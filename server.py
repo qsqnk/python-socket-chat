@@ -4,7 +4,7 @@ import logging
 
 from typing import Tuple, Iterable
 
-from config import SERVER_IP, SERVER_PORT
+from config import SERVER_IP, SERVER_PORT, MAX_MESSAGE_LENGTH
 
 
 class SocketServer:
@@ -39,7 +39,7 @@ class SocketServer:
         try:
             while True:
                 ip, port = ip_port
-                message = connection.recv(1024)
+                message = connection.recv(MAX_MESSAGE_LENGTH)
                 if not message:
                     break
                 message = f"{ip}:{port} says: {message.decode()}"

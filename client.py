@@ -25,8 +25,9 @@ class Client:
         self.connection = None
 
     def _handle_server_messages(self):
+        _META_INFO_LENGTH = 128
         while True:
-            message = self.connection.recv(1024)
+            message = self.connection.recv(MAX_MESSAGE_LENGTH + _META_INFO_LENGTH)
             if not message:
                 break
             print(message.decode())
