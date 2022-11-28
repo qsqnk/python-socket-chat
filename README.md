@@ -15,6 +15,7 @@ Enter the project directory
 $ cd python-socket-chat
 ```  
 Then configure server ip, server port and max message length in `config.py`
+
 Run server
  ```properties
 $ python3 server.py
