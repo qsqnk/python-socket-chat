@@ -7,7 +7,7 @@ from typing import Tuple, Iterable
 from config import SERVER_IP, SERVER_PORT, MAX_MESSAGE_LENGTH
 
 
-class SocketServer:
+class Server:
     def __init__(self, ip, port):
         self.ip = ip
         self.port = port
@@ -71,7 +71,7 @@ class SocketServer:
 
 
 if __name__ == "__main__":
-    SocketServer(
+    Server(
         ip=SERVER_IP,
         port=SERVER_PORT,
     ).start()
