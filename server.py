@@ -18,7 +18,7 @@ class SocketServer:
             family=socket.AF_INET,
             type=socket.SOCK_STREAM,
         ) as s:
-            logging.info("Server is starting working on {}:{}", self.ip, self.port)
+            logging.info(f"Server is starting working on {self.ip}:{self.port}")
             try:
                 s.bind((self.ip, self.port))
                 s.listen()
@@ -30,7 +30,7 @@ class SocketServer:
                         args=[connection, ip_port],
                     ).start()
             except Exception as e:
-                logging.error("An exception occurred during accepting connection", e)
+                logging.error(f"An exception occurred during accepting connection {e}")
             finally:
                 for conn in self.connections:
                     self._drop(conn)
@@ -48,7 +48,7 @@ class SocketServer:
                     connections=filter(lambda c: c != connection, self.connections),
                 )
         except Exception as e:
-            logging.error("An exception occurred during handling connection", e)
+            logging.error(f"An exception occurred during handling connection {e}")
         finally:
             self._drop(connection)
 
@@ -60,7 +60,7 @@ class SocketServer:
         try:
             connection.send(message.encode())
         except Exception as e:
-            logging.error("An exception occurred during broadcasting message", e)
+            logging.error(f"An exception occurred during broadcasting message {e}")
             self._drop(connection)
 
     def _drop(self, connection: socket.socket) -> None:
